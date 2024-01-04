@@ -275,3 +275,24 @@ The password for the next level is stored in **/etc/bandit_pass/bandit14** and c
 ssh bandit13@bandit.labs.overthewire.org -p 2220
 password: wbWdlBxEir4CaE8LaPhauuOo6pwRmrDw
 ```
+
+Approach:
+
+In current home directory (bandit13) I can read the private sshkey that belongs to user bandit14. I can't read the contents of a file that is at /etc/bandit_pass/bandit14 because of the restrictions.
+
+![](src/image-16.png)
+
+But after a bit of studying I can log in as user bandit14 with the following command: `ssh bandit14@bandit.labs.overthewire.org -i sshkey.private -p 2220`
+
+Do note that this command works when I am at the home directory of bandit13. After that I am logged in as user bandit14 and I can read the contents of a file that is at /etc/bandit_pass/bandit14.
+
+<u>**_Level 14 -> Level 15_**</u>
+
+The password for the next level can be retrieved by submitting the password of the current level to **port 30000 on localhost.**
+
+```
+ssh bandit14@bandit.labs.overthewire.org -p 2220
+password: fGrHPx402xGC7U7rXKDaxiWFTOiF0ENq
+```
+
+Approach:
