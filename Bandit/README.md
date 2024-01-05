@@ -191,8 +191,6 @@ Yeah this one is not human-readable so we have to think about something else.
 
 You get three results and one of them is the password.
 
-<u>**_Tätä kohtaa voi sitten hioa, kun osaamista on enemmän :)_**</u>
-
 <u>**_Level 10 -> Level 11_**</u>
 
 The password for the next level is stored in the file **data.txt**, which contains base64 encoded data
@@ -295,4 +293,34 @@ ssh bandit14@bandit.labs.overthewire.org -p 2220
 password: fGrHPx402xGC7U7rXKDaxiWFTOiF0ENq
 ```
 
-Approach:
+Approach: I read the command hinted in the task and found that command **nc** is useful for this task. You need to specify a destination and a port as arguments for the command like so:
+
+`nc localhost 30000`
+
+After this I got a little confused because it seemed like nothing happened but when I pressed enter I got an error message "Wrong! Please enter the correct current password". After putting the current password I got the password for the next level. Hurray!
+
+<u>**_Level 15 -> Level 16_**</u>
+
+The password for the next level can be retrieved by submitting the password of the current level to port **30001 on localhost** using SSL encryption.
+
+Helpful note: Getting “HEARTBEATING” and “Read R BLOCK”? Use -ign_eof and read the “CONNECTED COMMANDS” section in the manpage. Next to ‘R’ and ‘Q’, the ‘B’ command also works in this version of that command…
+
+```
+ssh bandit15@bandit.labs.overthewire.org -p 2220
+password: jN2kgmIXJ6fShzhT2avhotn4Zcka6tnt
+```
+
+Approach: After again reading some manuals I found that command `s_client` was part of `openssl` command. And getting the manual from `s_client` was a bit tricky to get (that worked with command `man openssl-s_client `). `s_client` is a command that implements a generic SSL/TLS client which connects to a remote host using SSL/TLS. In this case I have to use an argument `-connect host:port` which specifies the host and optional port to connect to. After this command `openssl s_client -connect localhost:30001` we we see something like this:
+
+![](src/image-17.png)
+
+It continues (a lot, actually) and in the end of this whole output you get a text "read R BLOCK". When enter any string to it and press enter you will get an error saying "Wrong! Please enter the correct current password". After entering the current password you will get a password for the next level.
+
+<u>**_Level 16 -> Level 17_**</u>
+
+The credentials for the next level can be retrieved by submitting the password of the current level to **a port on localhost in the range 31000 to 32000**. First find out which of these ports have a server listening on them. Then find out which of those speak SSL and which don’t. There is only 1 server that will give the next credentials, the others will simply send back to you whatever you send to it.
+
+```
+ssh bandit16@bandit.labs.overthewire.org -p 2220
+password: JQttfApK4SeyHwDlI9SXGR50qclOAil1
+```
