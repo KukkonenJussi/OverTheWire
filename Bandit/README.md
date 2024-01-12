@@ -324,3 +324,28 @@ The credentials for the next level can be retrieved by submitting the password o
 ssh bandit16@bandit.labs.overthewire.org -p 2220
 password: JQttfApK4SeyHwDlI9SXGR50qclOAil1
 ```
+
+Approach: I would guess that `nmap` works in this situation. Let's try that command and use the argument `-p` to specify the range of ports we are scanning.
+
+![](src/image-18.png)
+
+As a result I get five ports that are open but the services are unknown. Next I would try the command used in previous level which is `openssl`.
+
+When connecting to each of these ports one port gives you a private key that we can (hopefully) use to get the password for the next level. In the previous levels I have learned that it is possible to create a directory to the /tmp/ directory. I will make a directory there and copy the contents of a private ssh key to a file within that directory and then hopefully I can get into the next level.
+
+Okay, after the steps I mentioned I tried to log in to the next level but I got an error that the "Permissions are too open".
+
+![](src/image-19.png)
+
+After changing correct permissions for the file I got in to the next level. Hurray!
+
+<u>**_Level 17 -> Level 18_**</u>
+
+There are 2 files in the homedirectory: **passwords.old and passwords**.new. The password for the next level is in **passwords.new** and is the only line that has been changed between **passwords.old and passwords.new**
+
+**NOTE: if you have solved this level and see ‘Byebye!’ when trying to log into bandit18, this is related to the next level, bandit19**
+
+```
+ssh bandit17@bandit.labs.overthewire.org -p 2220
+password: VwOSWtCA7lRKkTfbr2IDh6awj9RNZM5e
+```
