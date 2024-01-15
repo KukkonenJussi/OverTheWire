@@ -349,3 +349,44 @@ There are 2 files in the homedirectory: **passwords.old and passwords**.new. The
 ssh bandit17@bandit.labs.overthewire.org -p 2220
 password: VwOSWtCA7lRKkTfbr2IDh6awj9RNZM5e
 ```
+
+Approach: Level hints and commands I may need to solve this level are `cat`, `grep`, `ls` and `diff`. I think that `diff` is the command we need for this level.
+
+After command `diff passwords.old passwords.new` I got output something like this:
+
+```
+< STRING
+---
+> STRING
+```
+
+String that is after < means that the string is in passwords.old file and the string after > is in passwords.new file.
+
+Well I accidentally got a "Byebye !" message after loggin in with bandit18 using the new password `hga5tuuCLF6fFzUpnagiMN8ssu9LFrdg`. As the description of the level says, this is related to the next level, bandit19.
+
+<u>**_Level 18 -> Level 19_**</u>
+
+The password for the next level is stored in a file `readme` in the homedirectory. Unfortunately, someone has modified `.bashrc` to log you out when you log in with SSH.
+
+Approach:
+
+I tried different ideas like e.g.
+
+- move the files to the /tmp/ directory and try ssh from there with changed permissions
+- tried to modify the contents of a file
+- tried `openssh`
+
+But then I remembered that `ssh` has a parameter `-t` which forces pseudo-terminal allocation. I tried that with `/bin/sh` and I got in.
+
+![](src/image-20.png)
+
+Now we can use the basic commands like `ls` and `cat` to see find the password for the next level.
+
+<u>**_Level 19 -> Level 20_**</u>
+
+To gain access to the next level, you should use the setuid binary in the homedirectory. Execute it without arguments to find out how to use it. The password for this level can be found in the usual place (/etc/bandit_pass), after you have used the setuid binary.
+
+```
+ssh bandit19@bandit.labs.overthewire.org -p 2220
+password: awhqfNnAbc1naukrpqDYcF95h7HoMTrC
+```
