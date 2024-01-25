@@ -390,3 +390,24 @@ To gain access to the next level, you should use the setuid binary in the homedi
 ssh bandit19@bandit.labs.overthewire.org -p 2220
 password: awhqfNnAbc1naukrpqDYcF95h7HoMTrC
 ```
+
+Approach:
+
+With command `ls -l` I can see that there is `s` in privileges instead of `x`. With command `file` I can see that the file has setuid placed. And after the command `./bandit20-do whoami` I can confirm to have the bandit20 access.
+
+The thing is that whoever runs the file bandit20-do inherits (temporarily) the same permissions as the owner of the file.
+
+![](src/image-21.png)
+
+With all this information I can read the password for the next level using the following command `./bandit20-do cat /etc/bandit_pass/bandit20`. Hurray!
+
+<u>**_Level 20 -> Level 21_**</u>
+
+There is a setuid binary in the homedirectory that does the following: it makes a connection to localhost on the port you specify as a commandline argument. It then reads a line of text from the connection and compares it to the password in the previous level (bandit20). If the password is correct, it will transmit the password for the next level (bandit21).
+
+NOTE: Try connecting to your own network daemon to see if it works as you think
+
+```
+ssh bandit20@bandit.labs.overthewire.org -p 2220
+password: VxCazJaVykI6W36BkBU0mJTCM8rR95XT
+```
