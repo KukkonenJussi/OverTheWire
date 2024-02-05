@@ -65,7 +65,7 @@ Approach:
 
 <u>**_Level 4 -> Level 5_**</u> OK?
 
-The password for the next level is stored in the only human-readable file in the inhere directory. Tip: if your terminal is messed up, try the “reset” command.
+The password for the next level is stored in the only human-readable file in the **inhere** directory. Tip: if your terminal is messed up, try the “reset” command.
 
 ```
 ssh bandit4@bandit.labs.overthewire.org -p 2220
@@ -92,7 +92,7 @@ Approach:
 
 <u>**_Level 5 -> Level 6_**</u>
 
-The password for the next level is stored in a file somewhere under the inhere directory and has all of the following properties:
+The password for the next level is stored in a file somewhere under the **inhere** directory and has all of the following properties:
 
 - human-readable
 - 1033 bytes in size
@@ -121,16 +121,16 @@ shortly about this command:
 
 <u>**_Level 6 -> Level 7_**</u>
 
-```
-ssh bandit6@bandit.labs.overthewire.org -p 2220
-password: P4L4vucdmLnm8I7Vl7jG1ApGSfjYKqJU
-```
-
 The password for the next level is stored **somewhere on the server** and has all of the following properties:
 
 - owned by user bandit7
 - owned by group bandit6
 - 33 bytes in size
+
+```
+ssh bandit6@bandit.labs.overthewire.org -p 2220
+password: P4L4vucdmLnm8I7Vl7jG1ApGSfjYKqJU
+```
 
 Approach:
 
@@ -303,7 +303,7 @@ After this I got a little confused because it seemed like nothing happened but w
 
 The password for the next level can be retrieved by submitting the password of the current level to port **30001 on localhost** using SSL encryption.
 
-Helpful note: Getting “HEARTBEATING” and “Read R BLOCK”? Use -ign_eof and read the “CONNECTED COMMANDS” section in the manpage. Next to ‘R’ and ‘Q’, the ‘B’ command also works in this version of that command…
+**Helpful note: Getting “HEARTBEATING” and “Read R BLOCK”? Use -ign_eof and read the “CONNECTED COMMANDS” section in the manpage. Next to ‘R’ and ‘Q’, the ‘B’ command also works in this version of that command…**
 
 ```
 ssh bandit15@bandit.labs.overthewire.org -p 2220
@@ -366,7 +366,7 @@ Well I accidentally got a "Byebye !" message after loggin in with bandit18 using
 
 <u>**_Level 18 -> Level 19_**</u>
 
-The password for the next level is stored in a file `readme` in the homedirectory. Unfortunately, someone has modified `.bashrc` to log you out when you log in with SSH.
+The password for the next level is stored in a file **readme** in the homedirectory. Unfortunately, someone has modified **.bashrc** to log you out when you log in with SSH.
 
 Approach:
 
@@ -433,7 +433,7 @@ Great, the connection is working. I send the password from the server and hopefu
 
 <u>**_Level 21 -> Level 22_**</u>
 
-A program is running automatically at regular intervals from cron, the time-based job scheduler. Look in /etc/cron.d/ for the configuration and see what command is being executed.
+A program is running automatically at regular intervals from **cron**, the time-based job scheduler. Look in **/etc/cron.d/** for the configuration and see what command is being executed.
 
 ```
 ssh bandit21@bandit.labs.overthewire.org -p 2220
@@ -452,7 +452,9 @@ I read the manual about the `cron` command for a while to understand the idea be
 
 <u>**_Level 22 -> Level 23_**</u>
 
-A program is running automatically at regular intervals from cron, the time-based job scheduler. Look in /etc/cron.d/ for the configuration and see what command is being executed.
+A program is running automatically at regular intervals from **cron**, the time-based job scheduler. Look in **/etc/cron.d/** for the configuration and see what command is being executed.
+
+NOTE: Looking at shell scripts written by other people is a very useful skill. The script for this level is intentionally made easy to read. If you are having problems understanding what it does, try executing it to see the debug information it prints.
 
 ```
 ssh bandit22@bandit.labs.overthewire.org -p 2220
