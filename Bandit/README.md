@@ -411,3 +411,31 @@ NOTE: Try connecting to your own network daemon to see if it works as you think
 ssh bandit20@bandit.labs.overthewire.org -p 2220
 password: VxCazJaVykI6W36BkBU0mJTCM8rR95XT
 ```
+
+Approach: After reading the previous levels, I see a command `nc` that I used in one of the previous levels. After reading the command, I notice a couple of things:
+
+- It can act as a server, in which case it needs to open a port to communicate with another device
+- A few switches help with this task:
+  - `-l` is for listening,
+  - `-p` is for specifying the port,
+  - `-v` is for producing more verbose output.
+
+With this information, I do the following:
+
+- I'll open an extra terminal. I set the second terminal as a server to listen to the port I want and on the other terminal I connect to the server by sending the file `suconnect`
+- If the connection works, I will send the password on the server and see what happens
+
+NOTE: The terminal on the left acts as a server, the one on the right sends the file to the server
+
+![](src/image-22.png)
+
+Great, the connection is working. I send the password from the server and hopefully I get a new password for the next level in response. Which I got indeed!
+
+<u>**_Level 21 -> Level 22_**</u>
+
+A program is running automatically at regular intervals from cron, the time-based job scheduler. Look in /etc/cron.d/ for the configuration and see what command is being executed.
+
+```
+ssh bandit21@bandit.labs.overthewire.org -p 2220
+password: NvEJF7oVjkddltPSrdKEFOllh9V1IBcq
+```
