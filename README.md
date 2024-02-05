@@ -1,6 +1,6 @@
 <h1>Over the wire</h1>
 
-This private repository is an educational space dedicated to exploring cybersecurity concepts while maintaining the confidentiality of task solutions in accordance with site guidelines. It serves as a platform to delve into best practices and principles of cybersecurity, aligning with a commitment to responsible and ethical learning in this field.
+This repository is my dedicated space for immersive learning and skill enhancement in the realm of cybersecurity. Feel free to explore, take inspiration, and glean insights from my journey into the concepts of cybersecurity. Whether you're a fellow learner or an enthusiast, this repository is open for you to witness and be inspired by the exploration of cybersecurity best practices and ethical learning.
 
 Within this repository, the "games" are organized in the recommended order specified on [OverTheWire](https://overthewire.org/wargames/). Each "game" includes detailed explanations of the objectives for every level's task and outlines my approach to solving them. To complement the verbal documentation, I've included visual aids in the form of pictures showcasing the completion of these tasks. This combination of textual walkthroughs and visual representations aims to provide a comprehensive understanding of the processes undertaken while respecting the privacy of task solutions.
 
