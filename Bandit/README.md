@@ -439,3 +439,24 @@ A program is running automatically at regular intervals from cron, the time-base
 ssh bandit21@bandit.labs.overthewire.org -p 2220
 password: NvEJF7oVjkddltPSrdKEFOllh9V1IBcq
 ```
+
+Approach:
+
+I navigated to the /etc/cron.d/ and read all files in the directory and this was the result.
+
+![](src/image-23.png)
+
+I read the manual about the `cron` command for a while to understand the idea behind that command and then tried copying the entire contents of the /etc/cron.d/ folder to the /tmp/ folder to see if anything changes with the permissions. Unfortunately, this did not help. I then focused on file cronjob_bandit22 and read the contents of it and the file included with the output, after which I got the password for the next level. Yay!
+
+![](src/image-24.png)
+
+<u>**_Level 22 -> Level 23_**</u>
+
+A program is running automatically at regular intervals from cron, the time-based job scheduler. Look in /etc/cron.d/ for the configuration and see what command is being executed.
+
+```
+ssh bandit22@bandit.labs.overthewire.org -p 2220
+password: WdDozAdTM2z9DiFEQ2mGlwngMfj4EZff
+```
+
+Approach:
