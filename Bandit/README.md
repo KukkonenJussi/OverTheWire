@@ -462,3 +462,37 @@ password: WdDozAdTM2z9DiFEQ2mGlwngMfj4EZff
 ```
 
 Approach:
+
+Navigate to /etc/cron.d/ and read the file cronjob_bandit23. It open the contents of a bash cript.
+
+![](src/image-25.png)
+
+In short, this script:
+
+- Uses /bin/bash interpreted and executed using the Bash shell.
+- Assigns the output of the `whoami` command to the variable `myname`.
+- The next line generates a unique identifier for the user based on their username
+  - `md5sum` command computes the MD5 hash of the input provided to it
+  - `cut -d ' ' -f 1` command splits the output of md5sum using a space delimiter (-d ' ') and selects the first field (-f 1), which is the MD5 hash itself.
+  - The result is then assigned to the variable `mytarget`.
+- The last line prints a message indicating that a password file is being copied from /etc/bandit_pass to /tmp.
+
+At first I tried all sorts of funny things, but in the end this is what you want:
+
+`echo I am user bandit23 | md5sum | cut -d ' ' -f 1`
+
+and after this we want use the output of the previous command and add it after the /tmp/ which is /tmp/8ca319486bfbbc3663ea0fbe81326349 in this case. Finally, we read the contents of that file to find the password for the next level.
+
+![](src/image-26.png)
+
+<u>**_Level 23 -> Level 24_**</u>
+
+A daemon is listening on port 30002 and will give you the password for bandit25 if given the password for bandit24 and a secret numeric 4-digit pincode. There is no way to retrieve the pincode except by going through all of the 10000 combinations, called brute-forcing.
+You do not need to create new connections each time
+
+```
+ssh bandit23@bandit.labs.overthewire.org -p 2220
+password: QYw0Y2aiA672PsMmh9puTQuhoz8SyR2G
+```
+
+Approach:
